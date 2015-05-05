@@ -1,0 +1,20 @@
+Twist in the tale answers
+
+
+
+
+
+
+Twist in the Tale 3.3
+Does the class in the following code apply the Singleton pattern correctly?
+class Singleton {
+    private Singleton anInstance;
+    synchronized public Singleton getInstance() {
+        if (anInstance == null)
+            anInstance = new Singleton();
+        return anInstance;
+    }
+}
+
+No it does not, a singleton class must have a private constructor. This class does not define a constructor at all so the default constructor
+will be accessible to other classes.

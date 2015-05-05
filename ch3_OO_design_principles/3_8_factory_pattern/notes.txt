@@ -1,0 +1,5 @@
+The factory pattern allows for creation of an object while hiding the implemetation details of how this happens by elimintating direct constructor
+calls. 
+Three type of factory pattern exist - Simple or static factory pattern,  factory method pattern and abstract factory pattern.
+
+Simple Factory pattern creates and returns objects of of a class that extend a common base class or implement a common interface.

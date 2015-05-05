@@ -1,0 +1,19 @@
+Purpose of Singleton pattern is to ensure class is only instantiated once. 
+Constructor of singleton class must be private, prevents any other class from creating instance. new SingletonInstance() cannot be called.
+Static variable used to maintain reference to sole instance of a class ensures all other clients use the same instance.
+static reference must be made private to ensure immmutability of singleton.
+
+Use of the singleton pattern can be problematic in a concurrent environment. Should execution of thread A pause just after finding that instance reference
+is null and switches context to thread B before setting instance reference then thread B will also see that the instance reference is also set to null. 
+Both threads will then call private constructor and the instance reference will be set and reset.
+There are two possible ways to mitigate against concurrent access issues - eager initialisation and synchronised (synchronized - java keyword) lasy initialisation.
+
+Eager initialisation requires instantiating the singleton in declaration of the reference variable such that the singleton is instantiated on class load. 
+Problem with this is that an instance of the singleton class lives in memory even if the class is never used. 
+Synchronized lazy initialisation waits until the public method to return the instance is called before instantiating the singleton but this method is
+synchrionized to prevent multiple concurrent accesses removing the possibility of multiple instantiations of a singleton class.
+
+Another alternative to creating a singleton is to use an enum.
+
+Developers often use static variables to provide single instances of an object with global access. This does not prevent creation of another object of that class
+referenced by a different name.
