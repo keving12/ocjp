@@ -2,4 +2,11 @@ The factory pattern allows for creation of an object while hiding the implemetat
 calls. 
 Three type of factory pattern exist - Simple or static factory pattern,  factory method pattern and abstract factory pattern.
 
-Simple Factory pattern creates and returns objects of of a class that extend a common base class or implement a common interface.
+Simple Factory pattern creates and returns objects of of a class that extend a common base class or implement a common interface. The factory abstracts away from
+the client the specific class needed to perform some task. I.e we go to a dealer when we want to buy a car rather than asking a factory to build us one.
+The building of the car is abstracted away from us by the dealer.
+
+Factory method pattern differs from the simple factory method pattern in that there is another layer of inheritance abstracting away the instantiation
+of an object. A factory will delegate responsibilty for instantiation to its subclasses. I.e if I want baked goods, more specifically an apple pie I would 
+request an apple pie factory. This will then return an apple pie instance of the baked goods interface. The benefit of this is if I decide my apple pie
+factory only produces apple and blackberry pies I can change the concrete instance returned from the apple pie factory and clients would have no idea.
