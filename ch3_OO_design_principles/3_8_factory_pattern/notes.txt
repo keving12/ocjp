@@ -10,3 +10,13 @@ Factory method pattern differs from the simple factory method pattern in that th
 of an object. A factory will delegate responsibilty for instantiation to its subclasses. I.e if I want baked goods, more specifically an apple pie I would 
 request an apple pie factory. This will then return an apple pie instance of the baked goods interface. The benefit of this is if I decide my apple pie
 factory only produces apple and blackberry pies I can change the concrete instance returned from the apple pie factory and clients would have no idea.
+
+Abstract factory pattern stands in contrast to the factory method pattern in that it is used to create related objects where the factory method pattern 
+creates only a single object. It is a factory of factories.
+
+There are a number of benefits to using the factory pattern. Some of these are:
+- Flexibility: Logic of object instantiation can be changed without affecting the clients that rely on those objects
+- Prefers method invocation rather than direct calls to constructors
+- Prevents tight coupling between application and implementation of a class
+
+A number of classes within the Java API make use of the factory pattern including java.util.Calendar.getInstance() and java.util.Arrays.asList()

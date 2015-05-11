@@ -1,0 +1,9 @@
+The purpose of the DAO design pattern is to abstract out access to data stores. It manages to connection to the data store and then access
+to the records. Details about the how the data is stored (text file, database) and how it is accessed is hidden away from the client. 
+Hiding this information from the client means the technology used to store the data can be changed without affecting the client.
+
+It is possible to make use of the factory pattern along with the DAO pattern to support access to multiple data sources within an application.
+
+Benefits of using the DAO pattern include:
+- Promotes programming to an interface, hides implementation of data access logic from clients who make use of it
+- Decouples business logic from persistence mechanism. Any change to the persistence mechanism can be made independent of any of the application code.
