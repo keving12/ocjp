@@ -1,0 +1,6 @@
+Object-oriented design principles enable applications that are easily extended and more manageable. During the lifetime 
+of a piece of software it was undergo a number of revisions and these require far less effort if good object-oriented principles are used.
+Principles such as low coupling and high cohesion reduce the chances that a change to one piece of code will affect another part of the application.
+
+Design patterns are an example of experience reuse, someone found that performing an action in a particular way was useful and as such determined
+it is a pattern that should be followed when attempting to perform similar actions. 

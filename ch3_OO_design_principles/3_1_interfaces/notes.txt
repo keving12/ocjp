@@ -1,0 +1,23 @@
+An interface in Java can have two slightly different meanings. The first being the interface that is used to declare a type using the 
+interface keyword. The second is used to describe the interaction between different parts of the system. I.e one part talks to another part
+of the system using the interface exposed by the second part. This interface is a collection of the public methods that can be called by the
+first part of the application.
+
+The purpose of an interface in Java is to define a set of behaviours that belong to a type and any related constants but does not include
+any implemetation of the behaviour. Implementation of the behaviour is left to the class implementing the interface. An example would
+be the interface Eater with an eat method. Classes Human and Cat could implement this interface as they both require the eat behaviour but each class
+would implement this differently as cats eat with their tongue whereas humans use a knife and fork.
+
+Interfaces are akin to providing a window into a specific piece of functionality of a class. A class might implement two interfaces, Eater and Worker. 
+The part of the application that deals with the eating behaviour of a type is not interested in its work behaviour. In this instance we declare the type
+as an eater and call its eat method without any interest in redundant information about the work behaviour of the type. 
+
+Interfaces are often referred to as being a contract. There define what is required from an object in order to be of that type. 
+
+All methods that belong to an interface are implicitly public abstract and all variables and public, static and final. Methods are implicitly 
+public abstract as they have to be overridden by the implementing classes. Any change to the access and non-access modifiers prevents ths and will fail
+compilation. Ommitting the public abstract keywords from a method declaration is fine as they are implicit, it's also fine to explictly
+declare them.
+Variables are marked as static as they have to accessed from a static context owing to the fact that interfaces cannot be instantiated. The contractual 
+nature of interfaces means that implementing classes should not be allowed to change the variables defined in an interface and for this
+reason they are implicitly final. Failure to initialise any of the constants in an interface causes compilation to fail.
