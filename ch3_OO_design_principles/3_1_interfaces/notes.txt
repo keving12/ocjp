@@ -21,3 +21,15 @@ declare them.
 Variables are marked as static as they have to accessed from a static context owing to the fact that interfaces cannot be instantiated. The contractual 
 nature of interfaces means that implementing classes should not be allowed to change the variables defined in an interface and for this
 reason they are implicitly final. Failure to initialise any of the constants in an interface causes compilation to fail.
+
+Any class that does not implement all of the methods of the interfaces it has implemented will fail to compile. This is unless the
+class is declared as abstract then a subclass of that class must implement any unimplemented methods. If there are no subclasses compilation fails.
+
+Classes are allowed to declare instance and static variables with the same name as any variables defined in any of the interfaces implemented by that class.
+Implementation of a method in a class using a weaker access modifier than public will fail compilation.
+Implementing multiple interfaces where a method has the same name in those interfaces is not a problem. The single implemention applies to both
+provided they have the same method signature. Where the two methods have the same name in different interfaces but different method signatures then 
+the implementing class must define implementations for each of the different method signatures.
+
+An interface can extend multiple interfaces and will inherit all of the methods within its extended interfaces. Any class implementing an
+interface that extends mutliple other interfaces must implement all of the methods within the interface hierarchy, unless declared abstract.
