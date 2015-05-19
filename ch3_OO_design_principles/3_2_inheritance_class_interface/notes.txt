@@ -12,3 +12,6 @@ extends this class meaning they are able to reuse implementations of methods lik
 It is also useful for adding new functionality that may be shared among a number of different types. For example if I wanted to add
 the beepHorn() method to my SuperCar, FamilyCar or SportsCar classes I would add these to a common base class such as Car and I would
 only have to define the behaviour once.
+
+Interface inheritance is preferred when a number of different functionalities are required to be supported by a class. For example
+a Triathlete can support running, cycling and swimming so could implement Runner, Cyclist and Swimmer interfaces.
