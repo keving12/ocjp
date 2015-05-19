@@ -1,0 +1,14 @@
+There are a number of different benefits to class inheritance and interface inheritance and for this reason the choice of which
+to use depends on the requirements of the system.
+
+Differences between class and interface inheritance are:
+- Instantiation of a base class also instantiates any base classes whereas interfaces cannot be instantiated
+- Classes can only extends one other class but can implement multiple interfaces
+- Classes allow for reuse of code defined in a base class within any dervived classes but interfaces don't define implementation details.
+- Any change to code in the base class may cause a failure in compilation of derived classes as they no longer offer the same functionality
+
+Class inheritance is preferred in the case when code reuse is required. A prime example being the java.lang.Object class. All objects
+extends this class meaning they are able to reuse implementations of methods like equals and hashcode.
+It is also useful for adding new functionality that may be shared among a number of different types. For example if I wanted to add
+the beepHorn() method to my SuperCar, FamilyCar or SportsCar classes I would add these to a common base class such as Car and I would
+only have to define the behaviour once.
