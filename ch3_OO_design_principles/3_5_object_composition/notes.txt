@@ -1,0 +1,3 @@
+Object composition is the process of including another object within your class in order to reuse the functiionality of that object.
+Composition is to be used when your class is composed of a number of other objects. Examples include a Football Team being composed of 11 Players
+and a Manager and a Car being comopsed of an Engine, Wheels and Doors.
