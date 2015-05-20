@@ -1,0 +1,17 @@
+Cohesion within software development relates to how well defined a class or module is. When the responsibility of class or module is well defined
+it is considered to perform its task better than if it was not well defined. The better the definition of a class or module the higher the 
+level of cohesion of that class or module.
+High cohesion is desirable from a software module as it is considered more reliable, robust and easier to maintain and reuse.
+If we were to consider a class that represented a software QA analyst their cohesion would be higher if that class focussed on all the tasks associated 
+with QA'ing software. If we were to add functionality in there such that the QA analyst could make code changes their cohesion would be lower 
+as they are now performing tasks outside of what would be considered thier normal realm of responsibility.
+
+Loose coupling is another aspect of software development that improves reliability and maintainability of classes and modules. Coupling refers to the amount
+a class or module knows about another class or module. If one class MyClass interacts with another class YourClass using only the public methods of
+YourClass then the two classes are considered to be loosely coupled. 
+Having tighter coupling between classes makes it more difficult to make changes to a class as the risk of classes that use it breaking becomes higher.
+
+Having MyClass interact with YourClass using only the public interface allows YourClass to change any implementation details without breaking 
+MyClass. In contrast if MyClass makes use of public instance variables within YourClass any change to those variables then require a change to 
+the code in MyClass that uses those variables or risk failing to build.
+
