@@ -1,0 +1,10 @@
+Identifying Is-A and Has-A relationships is really simple. It is a case of simply asking is an object of a particular type, i.e is a child a human?
+or does an object have a particular field, i.e does the human have a phone number?
+
+Is-A relationships represents whether or not a type exists within another types heirarchy. If a class extends another class, implements an interface
+or if an interface extends another then this is an implementation of an Is-A relationship. It is only possible to travese up the inheritance
+heirarchy when identifying Is-A relationships not downwards. I.e if class Cat extends Animal, Cat Is-A Animal is true but Animal Is-A Cat will always
+be false.
+
+Has-A relationships represents whether or not a type contains a certain field. For a class that implements a particular instance variable then 
+that class HAS that field.
