@@ -1,0 +1,2 @@
+A design pattern is a solution to a specific problem that describes the approach to be taken rather than providing code to use. Its purpose
+is not to offer code reuse but experience resuse. 
