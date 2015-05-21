@@ -8,3 +8,30 @@ public class Parcel<MyClass> {
 
     public void set(MyClass t) { }  // MyClass here refers to the type parameter declared at the top of the class, not the actual class MyClass
 }
+
+Generic classes can extend other generic classes but the derived clases must be able to pass type parameters back to its base class. 
+Should a derived class fail to meet this criteria compilation will fail. For example the following is an acceptable extension of a generic class:
+
+class Product<T> { }
+class CleaningProduct<T> extends Product<T> { }
+
+In the above the CleaningProduct class extends Product and they share the type parameter T. This allows the Product class to be aware of the 
+type information used with CleaningProduct.
+An example of an incorrect extension of a generic class is:
+
+class Product<X> { }
+class CleaningProduct<Y> extends Product<X> { }
+
+The above code will fail to compile as the Product class will not be able to identify the type information of CleaningProduct as they have different 
+type parameters.
+
+Generic base classes can be extended by non generic derived clases:
+
+class Product<T> { }
+class ToiletCleaningProduct extends Product<T> { }
+
+but the non generic derived class does not accept any type parameters so the following will fail to compile:
+
+ToiletCleaningProduct<String> prod = new ToiletCleaningProduct<>();
+
+Interfaces can also be defined using generic type parameters. 
