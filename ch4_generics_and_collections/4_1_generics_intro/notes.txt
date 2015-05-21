@@ -1,0 +1,12 @@
+Generics provide the ability to remove any assumptions made by a developer that a peice of code would work with a particular type. A prime example
+being a List only holding String objects. However a List defined without a type parameter could hold any object type within it. A piece of code would 
+then be executed on all of the objects within the list assuming them to be of String type and a runtime exeception would be thrown for those objects 
+that were not String types.
+
+Generics allow for defining of the types that are allowable to be used within a piece of code. List<String> = new ArrayList<>() defines 
+that the arraylist should only store string objects. Any attempt to add objects of a different type to the list will fail compile time checking.
+There are a number of benefits to using generics including:
+- Remove the need to explicitly cast before performing an operation on an object
+- Code is subsequently more readable without explict casts
+- Algorithms become more generic so can work with multiple data types reducing the need to implement multiple versions
+

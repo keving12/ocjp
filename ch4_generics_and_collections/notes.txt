@@ -1,0 +1,4 @@
+The purpose of generics in Java is to define the types of objects that a piece of code is designed to work with. This enables the Java compiler
+to check on the types of objects that are being used within a piece of code to make sure that it is compatible. One of the benefits of performing this 
+compile time checking are that the likelihood of run time failures within a piece of code are minimised as there is no chance that an operation
+will be called on an object that doesn't support it.

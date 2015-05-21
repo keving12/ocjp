@@ -1,0 +1,10 @@
+Java naming conventions are such that uppercase single characters should be used when defining type parameters. This makes them easier to 
+distinguish from other variables and methods within a class.
+
+It is possible to use the name of another class as a type parameter and still be generic. Example:
+
+class MyClass {}
+public class Parcel<MyClass> { 
+
+    public void set(MyClass t) { }  // MyClass here refers to the type parameter declared at the top of the class, not the actual class MyClass
+}
