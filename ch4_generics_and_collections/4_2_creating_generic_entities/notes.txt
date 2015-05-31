@@ -79,4 +79,6 @@ public class GenericClass<T> {
     public <E> void print(E e) { }
 }
 
-
+It is possible to limit the type of objects that can be passed as arguments to generic classes and interfaces by using bounded generic types.
+Use of a bounded type parameter allows for access to members defined within the superclass of a type parameter. Without a bounded
+type parameter only members defined in the Object class can be accessed.
