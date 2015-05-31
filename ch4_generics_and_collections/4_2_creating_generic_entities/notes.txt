@@ -74,7 +74,9 @@ public class MyNonGenericClass {
     public <E> void print(E e) { }
 }
 
-When defining generic methods within a generic class or interface they must take the same form as above but the type parameter defined
-for the method must differ from the type parameter specified after the name of the class or interface
+Generic methods definied in a generic class should look like the following:
+public class GenericClass<T> {
+    public <E> void print(E e) { }
+}
 
 

@@ -4,11 +4,9 @@ public class GenericClassGenericMethod<T> {
         System.out.println(e.getClass());
 
     }
-    /**
-     * Below method cause compilation to fail - T is class level parameter type. Cannot be applied to generic method
-     */
+    
     public <T> void anotherPrint(T t) {
-        System.out.println(e.getClass());
+        System.out.println(t.getClass());
     }
     
     public static void main(String[] args) {
