@@ -34,4 +34,47 @@ but the non generic derived class does not accept any type parameters so the fol
 
 ToiletCleaningProduct<String> prod = new ToiletCleaningProduct<>();
 
-Interfaces can also be defined using generic type parameters. 
+Interfaces can also be defined using generic type parameters. Generic interfaces are defined as:
+
+public interface MyInterface<A, B> {
+
+    public void add(A val1, B val2) {
+    
+    }
+    
+    public A getA() {
+        return a;
+    }
+    
+    public B getB() {
+        return b;
+    }
+}
+
+Non-generic classes that implement a generic interface don't have the type parameters follow the class name, they are replaced by
+literal types in the declaration of the implemented interface. For example:
+
+public class MyNonGenericClass implements MyInterface<String, Integer> { }
+
+For generic classes that implements generic interfaces type parameters must follow both the class name and name of the implemented
+interface. E.g:
+
+public MyGenericClass<T> implements MyInterface<T> { }
+
+When implementing an interface with multiple type parameters it is possible to only implement one of those while defining a literal value
+for the other. E.g:
+
+public class MyNonGenericClass<B> implements MyInterface<String, B> { }
+public class MyNonGenericClass<A> implements MyInterface<A, Integer> { }
+
+Generic methods can be defined in generic or non-generic classes. To define a generic method in a non-generic class the type
+parameters must be defined just before the return type of the method. E.g:
+
+public class MyNonGenericClass {
+    public <E> void print(E e) { }
+}
+
+When defining generic methods within a generic class or interface they must take the same form as above but the type parameter defined
+for the method must differ from the type parameter specified after the name of the class or interface
+
+
