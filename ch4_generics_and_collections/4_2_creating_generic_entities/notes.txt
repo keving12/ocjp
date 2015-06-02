@@ -81,4 +81,17 @@ public class GenericClass<T> {
 
 It is possible to limit the type of objects that can be passed as arguments to generic classes and interfaces by using bounded generic types.
 Use of a bounded type parameter allows for access to members defined within the superclass of a type parameter. Without a bounded
-type parameter only members defined in the Object class can be accessed.
+type parameter only members defined in the Object class can be accessed by the type parameter as the type parameter extends Object by default.
+
+The bounds to be used for a generic class can be specified within the type parameter that is passed to a generic class or interface. E.g
+class MyClass<T extends Bound> { } specifies that MyClass can use a type parameter of Bound or any class that extends Bound.
+Interfaces can be used as the bound for a type parameter but the keyword implements is not used in this instance/ The following is illegal:
+class MyClass<T implements MyInterface> { }
+extends is the keyword that must be used regardless of whether the bound is a class or interface.
+class MyClass<T extends MyInterface> { }
+
+It is possible to use multiple bounds when defining the bounds of a type parameter. A single class and/or multiple interfaces can be used as
+bounds. The class passed as a type parameter to a generic class must be a subtype of all of the bounds, must extend the class or implement all 
+of the interfaces or the code will fail to compile. The bounds used in a type parameter have to be seperated using an ampersand. E.g:
+
+class MyClass<T extends MyOtherClass & MyInterface> { }
