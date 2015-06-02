@@ -1,0 +1,67 @@
+Abstract Classes
+- Defined using the abstract keyword
+- Cannot be instantiated but can be subclassed by another abstract or concrete class (extension is recommended)
+- Used to model a group of objects that have similar attributes and perform similar behaviours but have slight differences in their attributes/behaviours
+- An abstract method in an abstract class does not have a method body as it relies on the subclass to implement behaviour
+- Difference between abstract classes and interfaces is that variables defined in an interface are constants and cannot be reassigned in any derived class
+- A class can still be declared as abstract even if it does not contain any abstract methods
+- An abstract method cannot appear in a class not declared as abstract (concrete class) and will fail compilation
+- Abstract classes shouldn't be used simply to prevent class instantiation - use a private constructor
+- Having an abstract class that implements interfaces must comply with correct method overriding or overloading
+- Don't attempt to instantiate an abstract class
+- Do not mark an abstract class as final - they are supposed to be extended to implement functionality for abstract methods
+- An abstract class doesn't have to implement all methods of an interface it implements - this can be left for the concrete classes that extends the abstract class
+- Can use a reference variable of an abstract class to refer to an object of a derived class (like amy other base class)
+
+
+Static and Final keywords
+- Static members of a class are available at the point the class is loaded into memory
+- Static members belong to the class and not to any particular instance of the class
+- Top-level classes, interfaces and enums cannot be declared as static
+- Variables declared as static are shared among all instances of the class - when one instance changes a variable's value it is reflecting in all other instances
+- Static members can be accessed using an instance of a class although this is advised against as it makes it look like an instance member
+- Constants are defined in a class using the static and final keywords
+- Static methods can be called without an instance of a class (ClassName.staticMethod()) and can access static fields and methods but not nonstatic (instance) fields or methods
+- Instance methods can access static fields and methods
+- Where constructors are used to initialise instance variables static variables are initialised using a static initialiser - this is a blok of code within braces that is executed on class load
+- Multiple static initaliser blocks can exist within a class and are executed in the order they are defined
+- All type of variables can be marked as final and mean they can only be initialised once
+- For final static variables they have to be initialised with their declaration or in a static initialiser so the variables are only initialised once, static methods or constructors cannot be used
+- For final instance variables they have to be initialised within a constructor or instance initialiser as these will only execute once per object, instance methods cannot be used
+- Code that attempts to use an uninitialised final variable will fail to compile although code that fails to initialise a final variable but doesn't use it will compile successfully
+- Objects declared as final can have their state changed but the object referred to by a final variable cannot be changed
+- Initialisation of a final variable using a conditional statement will fail to compile if there exists a case that wont be met by the conditional statement
+- Final methods in a base class cannot be overridden in a derived class - attempt to do so causes compilation failure
+- Final classes cannot be extended - doing this prevent another class extending and overriding methods
+- Classes are declared final as final class Classname and not class final Classname
+- There are a number of final classes in api - any attempt to extend these will cause compilation failure, classes include String and all primitive wrapper classes (Integer, Double, etc.) 
+
+Enumerated Types
+- An enum is a type with a fixed number of constants
+- Because an enum provides constants they are accessible using the name of the enum followed by the constant name i.e Level.BEGINNER
+- Compilation of an enum adds implicit code including a valueOf method that returns an enum for a string argument, a values array, a static initialiser block that calls the constructor for the enum with two arguments, one for the enum name and one for the integer id
+- Enums are ordered by the order they are defined and not by the name of the constants
+- Enums cannot extend another class as they extend the enum class but they can implement interfaces
+- Enum constant list must be first in an enum class and should be followed by a semicolon if followed by variables and methods otherwise it's optional
+- It is possible to replace enums constants with constructor calls
+- Particular enum constants can override any of the methods defined in the enum class but any method declared within the constant specific class body must exist in the enum class or an attempt to call it will fail
+- Constructors declared within an enum can only be declared with default or private access, public or protected will fail compilation
+- Enums can exist as top-level enums or within another class or interface but not method local
+
+
+
+Static nested and inner classes
+- Classes and interfaces can be declared as static members of another class
+- Static nested classes can be accessed without an instance of the outer class
+- A nested class is one that exists within another class. If it declared as static then it is called a static nested class otherwise it is called an inner class
+- Static nested and inner classes can defined variables and methods just like a top-level class
+- Inner classes can also be declared within a method without a name
+- Static nested classes can access all static members of its enclosing class
+- Inner classes can access all instance and static members of its enclosing class including those marked as private
+- Method local inner class can access all members of the class in which the method is defined including those marked as private but only within the method the class is defined in
+- Inner classes allow for the encapsulation of functionality that might be useful to an enclosing class within its own class
+- Inner classes can be used as parameter containers rather than using methods with a large number of arguments
+- Inner classes can be used to organise classes as some inner classes wont be accessible to other classes and packages
+- Inner classes are good for use as call back methods. When trying to register a method to handle an event listener it's best done using an inner class of a method
+- Static nested classes are used to encapsulate partial functionality of the enclosing class 
+- Static nested classes can be accessed like any other static member of a class - using the name of the outer class as prefix
