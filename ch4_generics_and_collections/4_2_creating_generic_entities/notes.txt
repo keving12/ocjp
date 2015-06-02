@@ -85,7 +85,7 @@ type parameter only members defined in the Object class can be accessed by the t
 
 The bounds to be used for a generic class can be specified within the type parameter that is passed to a generic class or interface. E.g
 class MyClass<T extends Bound> { } specifies that MyClass can use a type parameter of Bound.
-Interfaces can be used as the bound for a type parameter but the keyword implements is not used in this instance/ The following is illegal:
+Interfaces can be used as the bound for a type parameter but the keyword implements is not used in this instance. The following is illegal:
 class MyClass<T implements MyInterface> { }
 extends is the keyword that must be used regardless of whether the bound is a class or interface.
 class MyClass<T extends MyInterface> { }
@@ -95,3 +95,29 @@ bounds. The class passed as a type parameter to a generic class must be a subtyp
 of the interfaces or the code will fail to compile. The bounds used in a type parameter have to be seperated using an ampersand. E.g:
 
 class MyClass<T extends MyOtherClass & MyInterface> { }
+
+Wildcards are used in generics to define that the type to be used with an object or collection is unknown. Wildcards cannot be used when
+invoking a generic method or creating an instance of a generic class.
+Use of a wildcard allows for a way around the fact that types within an inheritance relationship cannot be mixed in type parameters. I.e
+List<Object> list = new ArrayList<String> is invalid despite String being a subclass of Object.
+We can swap the above for a wildcard:
+List<?> list = new ArrayList<String>
+
+Adding objects to a collection that is declared using a wildcard is forbidden. The wildcard means that any object can be added to the collection 
+and despite defining the type in the assignment because it cannot be guarenteed that the object being added is of the correct type the compiler
+will not allow it.
+
+When iterating over a collection defined with a wildcard all of the items in the collection are considered to be Object types so must be 
+assigned to a variable of type Object.
+We can use bounded wildcards to limit the types objects that can be used as type parameters. There are two types of bounded wildcards, upper and 
+lower bounded. Upper bounded wildcards are used to restrict the type parameters to be of a type or any of its subclasses.
+An example of an upper bounded wildcard is:
+class MyClass<? extends MyUpperBound> { }
+
+It is valid to use final classes as the upper bound to a wildcard despite the fact that they will have no subclasses. This is valid because the type itself
+can still be a type parameter. E.g
+class MyClass<? extends String> { }
+because String is a final class there will be no chance of any of its subclasses being a type parameter to MyClass but String itself can be 
+so this is valid.
+
+Lower bounded types are used to restrict a type parameter to being a class and any of its base types (classes, interfaces or enums)

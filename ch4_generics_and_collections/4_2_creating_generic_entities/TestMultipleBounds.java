@@ -35,7 +35,7 @@ class Transporter<T extends Car & Driveable> {
 public class TestMultipleBounds {
     public static void main(String[] args) {
         Transporter<FamilySaloon> transporter = new Transporter<>();
-        
+        Transporter<Motorbike> transporter = new Transporter<>();
     
     }
 
