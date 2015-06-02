@@ -84,7 +84,7 @@ Use of a bounded type parameter allows for access to members defined within the 
 type parameter only members defined in the Object class can be accessed by the type parameter as the type parameter extends Object by default.
 
 The bounds to be used for a generic class can be specified within the type parameter that is passed to a generic class or interface. E.g
-class MyClass<T extends Bound> { } specifies that MyClass can use a type parameter of Bound or any class that extends Bound.
+class MyClass<T extends Bound> { } specifies that MyClass can use a type parameter of Bound.
 Interfaces can be used as the bound for a type parameter but the keyword implements is not used in this instance/ The following is illegal:
 class MyClass<T implements MyInterface> { }
 extends is the keyword that must be used regardless of whether the bound is a class or interface.
