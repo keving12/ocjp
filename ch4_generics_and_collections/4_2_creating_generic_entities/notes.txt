@@ -120,4 +120,21 @@ class MyClass<? extends String> { }
 because String is a final class there will be no chance of any of its subclasses being a type parameter to MyClass but String itself can be 
 so this is valid.
 
-Lower bounded types are used to restrict a type parameter to being a class and any of its base types (classes, interfaces or enums)
+Lower bounded types are used to restrict a type parameter to being a class or any of its base types (classes, interfaces or enums).
+The syntax for a lower bounded type is:
+class MyClass<? super MyBaseClass> { }
+this tells the compiler that the type parameter to MyClass must be of type MyBaseClass or any class higher than MyBaseClass in the 
+inheritance hierarchy.
+Unbounded wildcards and wildcards with upper bounds do not allow for items to be added to a collection but wildcards with lower bounds
+do allow this.
+
+When generic classes are compiled the type information about that class is erased. There are not multiple instances of a class that work with 
+the different possibilities. The result is a single class that has the type information removed and all instances of the type parameter are
+replaced with Object when the type parameter is unbounded or bounds information when the parameter is bounded.
+
+As part of the type erasure process that occurs at compile time the compiler may create bridge methods in order to ensure type safety. This 
+is necessary in the event of a non-generic class that extends a generic class. A non-generic class is going to have a method signature with a specific
+parameter type but the same method in the super class (which was generic) has had its type information erased and method signatures are going
+to have Object arguments. This means the method signatures are going to be incompatible. 
+The Java compiler rectifies this by creating a bridge method in the non-generic class with an Object argument that then casts to the 
+correct type thereby preserving type safety.

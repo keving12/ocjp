@@ -35,10 +35,6 @@ public class Wildcards {
         // All assignments above are correct and will compile as Number, Object and Integer are of type Integer or a superclass of Integer
         // Line below will fail to compile as Double is a subclass of number and only the type itself or a super class can be assigned when using lower bounded wildcards
         List<? super Number> doubleList = new ArrayList<Double>();
-        
-        
-        
-        
     }
     
 }
