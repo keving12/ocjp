@@ -1,0 +1,9 @@
+Java 7 uses type inference allow developer to instantiate a generic class without specifying the type parameter twice.
+Before Java 7 instantiation of a generic class had to be done as follows:
+List<String> stringList = new ArrayList<String>();
+In the above the type parameter String is defined twice but as of Java 7 there is no need to specify the redundant second type parameter as
+Java now uses type inference. 
+List<String> stringList = new ArrayList<>();
+
+Java cannot use the diamond to infer the type of an argument passed to a method but can infer the type from the actual argument. For example
+if an Integer object was passed to a generic method Java can infer that the type is an Integer.
