@@ -1,0 +1,33 @@
+Java had to ensure interoperability between existing classes that didn't use generics and generic classes upon the introduction
+of generics in Java 5. Generic classes that are used within defining a type parameter is considered a raw type.
+
+It is allowable to assign a generic object to a variable of a raw type as follows:
+Movable movable = new Movable<Car>();
+The above will compile without any warnings or errors. However if we try to call a method with a generic argument on that class 
+the compiler will warn that any operation on movable will be unchecked or unsafe as the type information is lost when using a raw
+reference type. E.g:
+movable.set(new Car()); results in compiler warning as the compiler has no type information on movable so doesn't know if Car is
+allowed.
+
+If we were to do the reverse of the above - assign a raw object to a generic reference variable the compiler will generate an 
+unchecked conversion warning. However unlike above we do not get compiler warnings when calling a method on the variable passing
+in a type argument as there is type information associated with the reference variable that the compiler is able to check against.
+
+When we mix generic objects with raw reference types we can get into a situation of runtime exceptions such as ClassCastException.
+We might call a method using reference variables of raw types and successfully add an item to a collection that otherwise would not
+have been allowed had type information been in place. In the event that this happens an attempt to get an item out of that collection
+and assign to a variable of the type we think it should be can cause a ClassCastException if the actual type of the item retrieved from
+the collection is different from what was expected.
+
+When subtyping with generics works in much the same way as subtyping with non-generic classes - we can assign an object of a 
+derived class to a reference variable of a base class but the type parameters must be the same or compilation will fail. There
+is no inheritance relationship between type parameters. The following is valid:
+List<String> myList = new ArrayList<String>();
+ArrayList is a derived class of List and the type parameter of String is the same between the two so the above line compiles 
+just fine. The below line however will fail to compile.
+List<Object> myList = new ArrayList<String>();
+Although List and ArrayList share an inheritance relationship and there is an inheritance relationship between the type parameters
+the above is invalid.
+It is possible, however to assign a generic object to a raw reference type as a generic class is a subtype of its raw type. The 
+following line is valid.
+List myList = new ArrayList<String>();
