@@ -1,0 +1,20 @@
+List objects within Java allow for null and duplicate values and objects are accessed in the same order they are inserted.
+Objects within a Set have to be unique so deuplicates cannot be inserted.
+Dequeue is a linear collection that allows for insertion and removal of objects from the front or the back of the collection.
+
+The ArrayList implementation of the List interface makes use of a resizeable array to store elements.
+
+When adding elements to a particular index in the array if the index is not the last position in the array then all elements after the position 
+must shift right, similarly if removing an element that isn't the last in the list then all those to the right of that element must shift left.
+
+In the event that an element is added to an ArrayList and there are no free cells in the array then a new, bigger array must be initalised
+and all the existing elements are moved to the new and then the new element is added.
+
+Removing an object from an ArrayList involves sequentially searching the underlying array and once an object in the array is found to be equal
+to the object we want to remove then it is removed. Remove only removes the first occurence of an object.
+The equals() method has a big role to play when removing objects from a collection. If the equals method is not overridden then the implementation
+of the Object class will be used which only compares the object references. If the equality of an object cannot be determined correctly then
+it will not be removed.
+
+Similarly, failure to correctly override the equals methods will prevent the contains method of the collections classes from finding objects
+within a collection.

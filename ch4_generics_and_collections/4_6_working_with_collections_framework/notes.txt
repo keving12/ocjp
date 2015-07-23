@@ -1,0 +1,31 @@
+At the top level of the Collection framework is the Iterable interface which enables collection classes to access and iterator
+in order to iterate over the object within a collection. The Iterable interface is extended by the Collection interface which is in turn
+extended by the List, Set and Queue interfaces.
+
+Nearly all of the concrete classes within the collection framework provide two constructors, a default constructor and a songle arg 
+constructor that takes a collection argument.
+The first creates an empty collection, the second creates a new collection object containing all of the objects within the collection
+argument excluding any objects that don't fit.
+
+Methods of the collection interface can be broken up into four categories, addition methods, removal methods, query methods
+and miscellaneous methods.
+
+== addition methods == 
+add() - adds object to the collection
+addAll() - takes a collection object as argument and adds all of the objects of the collection argument to the collection the method was called on
+
+== removal methods ==
+clear() - removes all elements from the collection
+remove() - takes an Object argument and removes it from the collection
+removeAll() - takes a collection object as argument and removes all of the objects of the collection argument from the collection the method was called on.
+retainAll() - takes a collection object as argument and all objects are removed from the collection this method was called on that don't exist in the collection argument
+
+== query methods ==
+contains() - takes an object argument and returns true if the collection has that object within it, false otherwise
+equals() - takes an object argument and compares if the object is equal to the collection object this method was called on
+isEmpty() - returns true if the collection is empty, false otherwise
+size() - return the count of the number of elements in the collection
+
+== miscellaneous == 
+iterator() - Returns an iterator to iterate over the objects within the collection
+toArray() - returns an array containing the elements of the collection this method was called on

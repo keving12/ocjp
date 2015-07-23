@@ -1,0 +1,10 @@
+A collection is an object that can group other objects and objects within a collection are referred to as elements. The Java collections
+framework allows for representation and manipulation of groups of objects.
+The collections framework provides implementations of data structures to store collections and interfaces to provides functions such
+as sorting.
+
+Included in the collections framework is the follwing:
+
+- Interfaces : List, Set, Queue, Map model data structures for storage and manipulation of a collection of objects.
+- Implementations :  Classes that implement the above interfaces such as ArrayList, HashMap and TreeSet
+- Algorithms : A number of classes in the collections framework contain utility methods for sorting and searching
