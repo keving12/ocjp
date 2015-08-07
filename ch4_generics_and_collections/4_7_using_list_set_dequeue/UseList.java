@@ -7,6 +7,8 @@ import java.util.Arrays;
 import java.util.ListIterator;
 
 public class UseList {
+    
+    // Using assertions in here - to run with assertions enabled add the -ea flag
 
     public static void main(String[] args) {
         UseList instance = new UseList();
@@ -39,11 +41,11 @@ public class UseList {
         intList.set(2, 22);
         // Retrieve an element from the list - element at position 1
         Integer num = intList.get(1);
-        System.out.println(num);
-        System.out.println(intList.contains(10));
-        System.out.println(intList.contains(77));
+        assert(num==20) : "num is not 20";
+        assert(intList.contains(10)) : "list doesn't contain 10";
+        assert(!intList.contains(77)) : "list does contain 77";
         // Print the count of the number of elements in the ArrayList
-        System.out.println(intList.size());
+        assert(intList.size() == 3) : "list has incorrect number of elements";
         // Get an interator for this list and iterate over the collection printing the objects
         ListIterator<Integer> iterator = intList.listIterator();
         while(iterator.hasNext()) {
@@ -68,9 +70,6 @@ public class UseList {
         System.out.println("size = "+myObjOverriddenList.size()); // prints 3
         myObjOverriddenList.remove(new MyObjectEqualsOverridden(1, "One", null));
         System.out.println("size = "+myObjOverriddenList.size()); // prints 2 - object to be removed was found because equals method was overridden
-        
-        
-        
     }
     
     private class MyObject {

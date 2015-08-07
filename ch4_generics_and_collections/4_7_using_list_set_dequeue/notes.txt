@@ -18,3 +18,42 @@ it will not be removed.
 
 Similarly, failure to correctly override the equals methods will prevent the contains method of the collections classes from finding objects
 within a collection.
+
+In java the Deqeue interface represents a double ended queue. This type of queue supports insertion and deletion of objects from both ends of the queue.
+Dequeue can be used as both a queue and a stack as with a queue elements are added to the end of a queue but taken from the front and a stack 
+adds to the front of a queue and removes from the front of a queue.
+
+It's important to note the different methods and what end of the deque they are operating on. peek() only queries the deque, remove()
+removes from the deque and poll() queries and removes from the deque.
+
+There are two different implementations of the Deque interface - ArrayDeque and LinkedList. Addition of nulls is permitted in the LinkedList
+implementation but not the ArrayDeque.
+
+Set models the abstraction of a data structure whereby duplicate elements are not allowed. Like all other collections classes there is an importance 
+on the equals method being overridden for user defined classes. 
+Set determines if the object being inserted is equal to one already in the set to ensure that no object is duplicated. Failure to specify 
+a correctly overridden equals method could see a set with duplicate elements.
+
+Implementations of the Set interface include HashSet, LinkedHashSet and TreeSet.
+HashSet provides no guarantee on the order elements are retrived and is implemented using a HashMap.
+Like all other collections classes overriding the equals method when making use of Set classes is important to ensure objects 
+can be found when querying a collection. It's also important to override the hashCode method when using classes such as HashSet and 
+HashMap. Failure to correctly override the collections method slows down the performanc of querying these classes as they effectively 
+degenerate to a list and have to be sequentially searched as all objects will end up in the same bucket rather than distributed
+across a number of different buckets.
+
+LinkedHashSet works in much the same way as the HashSet but is backed by a LinkedList to maintain the objects in the order 
+they were inserted.
+
+TreeSet is another implementation of the set interface and differs from the other implementations as all elements are stored 
+in sorted order. Order of elements is maintained using a binary tree and elements are sorted in natural order by implementing 
+the Comparable interface or by passing in a Comparator to the constructor.
+Whereas classes such as LinkedList and HashSet use the equals method to test equality of objects TreeSet determines equality using
+the compareTo method if implementing the Comparable or the compare method of the Comparator that was passed to the constructor.
+
+Implementations of compare and compareTo should be consistent with the behaviour of the equals method. I.e if two objects are 
+equal according the the equals method they should also be equal according to the implementations of compare and compareTo.
+
+To maintain the order of elements added to a TreeSet the underlying implementation is a red-black binary tree. This is a tree that
+modifies itself as values are added to ensure the least number of levels to traverse and values are distributed evenly.
+Even distribution of elements ensure the tree does not become unbalanced and degenerate into a sequential list.
