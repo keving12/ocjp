@@ -69,7 +69,8 @@ public class UseTreeMap {
     
     public static void userDefinedNonComparable() {
         Map<NonComparableObj> map = new TreeMap<>();
-        
+        map.put(new NonComparableObj(2.2, 22), 1);
+        map.put(new )
     }
     
     private static class MyComparableObj implements Comparable<MyComparableObj> {

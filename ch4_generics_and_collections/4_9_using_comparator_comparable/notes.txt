@@ -1,0 +1,18 @@
+The Comparable interface is a generic interface that defines a single method - compareTo() which takes a single argument. The 
+argument to the method is an instance of the class to be compared. The compareTo method returns a negative integer if the 
+object passed as argument should come before the object the method was called on. A positive integer is returned if the argument
+should come after and if the two objects are the same then zero is returned.
+
+The purpose of the interface is to allow authors of user defined classes to define what the natural order of instance of their 
+class should be and classes do not have to implement the Comparator interface to defined a sort order.
+
+The Comparator interface is used to define the sort order of a collection of objects and can be used in sort methods such as 
+Arrays.sort() and Collections.sort(). It's also used for Collections classes that store objects in order such as TreeSet and TreeMop.
+
+The Comparator interface is used to specify the sort order when classes don't specify a natural sort order by implementing
+the Comparable interface, they need to work with an alternate sort order or when there is no access to the source
+so implementation of a natural order is not possible.
+
+The Comparator interface defines a compare method which takes two instances of the class to be compared and like the Comparable 
+interface return zero if the objects are equal, a positive integer if the first argument should come after the second and negative 
+if the second argument should come after the first.
