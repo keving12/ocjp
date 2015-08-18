@@ -1,0 +1,5 @@
+Autoboxing is the process of converting a primitive type to an instance of its wrapper type. Unboxing is the reverse, taking
+the wrapped primitive and converting it back.
+
+Because wrapper classes are immutable adding a value to an instance of a wrapper doesn't change to original object it returns
+a new object with the modified value.
