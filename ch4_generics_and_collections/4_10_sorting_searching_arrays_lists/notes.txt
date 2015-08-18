@@ -1,0 +1,29 @@
+The collections framework defines an Arrays class that contains a number of methods for partial or complete sorting of 
+primitive or object arrays.
+There are methods that take a single array argument and this will sort the complete array or there are methods that accept
+an array argument with two integers to define the start and end index and will sort from within the range from start to end
+index.
+Other types of method in the Arrays class are one that takes an array argument and a Comparator to define the order in which to 
+sort the array and another that also take two integer arguments to sort according to the Comparator within the range defined
+by start and end index values.
+
+Those methods that specify a fromIndex and toIndex value sort the element at fromIndex but not the element at toindex.
+
+When sorting strings those with uppercase letters are ordered before those with lowercase letters because uppercase letters have
+lower ASCII values. 
+
+Elements added to a collection after the collection has been sorted are not added in a sorted order they are added 
+to the collection at the point determined by the implementation of the collection. 
+E.g when inserting elements into a sorted ArrayList they are added to the end of the list. 
+
+Arrays and Collections classes define a binarySearch() method. This method must be passed a sorted list and returns the index
+where the object to be located is found in the collection. If there are multiple objects in the collection then any of the indexes 
+that point to a matching object can be returned.
+
+The binarySearch() method is overloaded a number of times including a method that takes a comparator to sort the list and others 
+that take two integer arguments to define the start and end indexes to search between.
+
+When trying to perform a binary search on an array of Object type that has mixed values a ClassCastException is thrown.
+The problem is not when adding the elements to the array but when calling the binarySearch() method. Within the binarySearch method
+elements of the object array are compared to determine the order. So when trying to compare an integer against a string an attempt
+is made to cast the integer to string to compare and this causes the exception to be thrown.

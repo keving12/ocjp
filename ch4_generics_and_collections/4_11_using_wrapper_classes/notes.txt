@@ -1,0 +1,17 @@
+Java defines wrapper classes for all of the primitve types. This allows them to be added to collections. Wrapper classed are 
+immutable and can be autoboxed from primitive types and unboxed to primitive types.
+
+All wrapper classes implement the Serializable and Comparable interfaces.
+
+There are three ways to create an instance of a wrapper class: assignment of a primitive to a reference type of its wrapper class,
+using the constructor of the wrapper class or using the static valueOf() method.
+
+Because the wrapper classes are immutable they do not define a no-arg constructor. This ensures immutability by reventing 
+instantiation of an object and then setting its state by calling setters.
+
+All wrapper classes define a method to retrieve the primitive value they store. For example the integer class has a intValue()
+method that returns an int.
+
+Wrapper classes define static inner classes that maintain a cache of objects with a value in the range of -127 to 128. For any 
+values requested from a wrapper class in this range are returned from the cache. This means that multiple requests for the 
+same object within that range will point to the same object.
