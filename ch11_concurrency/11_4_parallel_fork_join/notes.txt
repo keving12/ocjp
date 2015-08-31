@@ -1,0 +1,16 @@
+The fork/join framework was added to Java 7 to support hardware parallelism. Its purpose is to split larger tasks into 
+smaller tasks that can be executed in parallel and once complete merge the results of the individual tasks.
+
+The fork/join framework works by evaluating the size of the task to be executed and if it is not large enough to be divided it
+will be executed sequentially or if it is then tasks will be divided until they are small enough to be executed sequentially.
+On completion of each tasks the result is merged back into the thread from which this thread was forked.
+
+ForkJoinPool is a concrete implementation of the fork/join framework that implements the ExecutorService interface. The fork/join
+framework maintains a queue of tasks that are submitted for execution but implements a work-stealing algorithm. Once a thread
+no longer has any tasks left in its queue it will steal tasks from the queues of other threads. This prevents the blocking
+of waiting threads.
+
+When using the fork/join framework any user defined class that must do processing should extends the abstract class ForkJoinTask 
+to be executed within a ForkJoinPool.
+ForkJoinTask is extended by two classes - RecursiveAction for computations that do not return a result and RecursiveTask for 
+computations that do return a result.

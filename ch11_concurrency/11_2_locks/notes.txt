@@ -1,0 +1,51 @@
+When executing a synchronize block an implicit lock is acquired on an object. Java offers a number of Lock objects that offer
+a greater level of locking control. Lock objects can define a time duration to wait to acquire a lock on an object and lock polling.
+
+The lock() method attempts to acquire a lock on a Lock object or waits if the lock cannot be acquired. When a lock is no longer 
+required a call to unlock() must be made to release this lock. This call should be made in a finally block to ensure it is 
+executed in the event of an exception.
+
+Implicit locks that have attempted to acquire a lock cannot quit, in contrast explicit locks can attempt to acquire a lock and the 
+call will return immediately 
+Calling method tryLock() on a lock object immediately returns a boolean defining whether or not it is possible to lock an object.
+
+Threads that acquire explicit locks will never deadlock which is in contrast to threads that acquire implicit locks which can at 
+times deadlock.
+
+When finished with a locked resource a call to the unlock() method releases the lock on that object.
+
+If we don't want to wait any longer than a specified time we can call the tryLock() method with arguments to specify how long we 
+want to wait before giving up on trying to acquire a lock. We pass two arguments to this method, a long value representing the value
+of time and a TimeUnit object.
+It is also possible to declare that a thread can be interrupted while waiting for a lock. The lockInterruptibly() method will attempt
+to acquire a lock on an object unless it is interrupted at which point an InterruptedException is thrown.
+
+Implicit locks cannot span multiple blocks of code, locks are released at the end of the synchronized block. Explicit lock objects
+however can span multiple methods.
+
+ReadWriteLock interface maintains a pair of locks, one for reading that can be acquired by multiple threads provided there are 
+no writing operations ongoing and a write lock that can only be acquired by a single thread at a time. To acquire a read lock a call
+to readLock() has to be made. The writeLock() method must be called to acquire a write lock.
+ReentrantReadWriteLock is a class that implements the ReadWriteLock interface.
+
+A number of classes were added to java to support atomic operations of reading and comparing variable and also modifying and 
+writing variables. These additions were made to remove possibility of thread interference of non atomic operations such as
+incrementing primitive variables.
+AtomicInteger is one such class and has atomic operations incrementAndGet() and decrementAndGet(). Any concurrent execution of 
+these methods will not result in thread interference. Methods of this class are in the form getAndXxx and xxxAndGet where 
+xxx is the operation to be performed such as increment or decrement.
+When calling the getAndXxx type methods these return the previous value whereas when calling the xxxAndGet methods these perform
+the operation and then return the updated value.
+
+Other atomic classes are:
+- AtomicBoolean
+- AtomicLong
+- AtomicIntegerArray
+- AtomicLongArray
+- AtomicReference<V>
+
+Invalid atomic classes are:
+- AtomicByte
+- AtomicShort
+- AtomicFloat
+- AtomicDouble

@@ -1,0 +1,28 @@
+The Executor framework in Java seperate out submissions of tasks and execution of those tasks. Tasks can be created from the 
+Runnable and Callable interfaces.
+ExecutorService extends Executor and adds a number of methods to manage the lifecycle of tasks being executed and the executors 
+executing those tasks.
+SheduledExecutorService extends ExecutorService and supports periodic execution or future execution of tasks. The Future class
+represents the state of asynchronous tasks and from this class there are a number of operations to query the state and cancel
+Future objects.
+The Executors class defines a number of utility and factory methods for the above interfaces.
+
+When implementing the Executor interface only one method - execute() needs to be implemented. With this method we can determine
+how we want to execute Runnable (interface Runnable) tasks including order of task execution, number of tasks that can be 
+executed concurrently and the number of tasks that can be queued.
+
+The Callable interface differs from the Runnable interface only in the signature of its method, firstly the sole method of this 
+interface is called call and unlike the Runnable interface its method for the return of a value and the ability to throw a checked
+exception.
+In addition the Callable interface is a parameterised interface and the type argument defines the type of values that can be 
+returned from the call() method.
+If the call method is not required to return a value we can define the type argument to be Void.
+
+Callable objects cannot be passed to a thread for execution in the same way a Runnable object can so we must use the ExecutorService
+interface when executing Callable objects.
+The ExecutorService defines methods to manage progress and termination of tasks. Single Runnable or Callable objects can
+be submitted to the ExecutorService with Future objects being returned. Mulitple Runnable objects can be submitted with Future 
+objects being returned. There are also methods for shutting down the ExecutorService and allowing or disallowing
+submitted tasks to be completed.
+
+Thread pools allow for the creation of a pool of reusable threads of a predefined size to execute tasks concurrently.

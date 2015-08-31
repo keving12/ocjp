@@ -1,0 +1,38 @@
+The java.util.concurrent package contains a number of concurrent collection classes that serve the purpose of removing memory 
+inconsistency. Java does this by defining a happens-before relationship between an operation that add items to a collection and any operations
+that attempt to read or remove that item from the collection.
+
+A number of classes are added to the collections framework by java.util.concurrent package. The additional collection classes are:
+- BlockingQueue: FIFO queue, blocks or times out when adding to a full queue or retrieving from an empty queue.
+- ConcurrentMap: Subinterface of java.util.Map that includes a number of additional atomic operations.
+- ConcurrentNavigableMap: Subinterface of ConcurrentMap that supports approximate matches.
+
+BlockingQueue is safe to use with multiple threads and defines an initial capacity which cannot be changed. Items can be added
+and removed from the queue but once the queue has filled up its capacity it will block attempts to add any new elements. In addition
+the queue will block any attempt to remove items from a queue.
+BlockingQueues are used to implement producer-consumer design pattern. This is a design pattern where single or multiple producer
+threads can add items to a queue to be consumed by a number of other threads. The use of the queue here allows for the producer
+to add items to a collection at any speed it wants without worrying about a consumers abiity to consume the items at the same rate.
+
+ConcurrentMap defines methods to replace or remove a key-value pair if the key already exists or add a value if the key is not 
+associated with a value.
+
+ConcurrentHashMap is a concrete implementation of the ConcurrentMap interface and is analogous to a concurrent version of the 
+HashMap class. When accessing a HashMap using multiple threads it is possible to synchronize access to it however this has a performance
+impact as the entire object will be locked meaning read and write operations will all be blocked until the current operation is complete.
+
+The ConcurrentHashMap provides better performance by allowing multiple threads to read concurrently while limiting modification
+operations by multiple threads.
+Because ConcurrentHashMap allows multiple concurrent reads iterators do not throw a ConcurrentModificationException as the collection
+does not need to be locked while iterating over the elements.
+The question arises what happens to items added to a ConcurrentHashMap after iteration of the map is begun. It is possible that 
+the map will iterate over the items that existed at the time the iterator was created but on some platforms the iterator may
+include new items that were added. This however is not guaranteed.
+Because the collection is not locked while modifying the elements some of the methods might not return an accurate value when 
+called by multiple threads. The size() method is one example, an accurate size of the map may not be returned.
+
+The ConcurrentMap interface added a number of methods that wrapped previous operations into a single atomic operation.
+When using a HashMap the tendency is to check if a key exists in a map and if not then put the key value pair onto the map.
+A ConcurrentHashMap wraps both of these operations into a single replace method. This prevents any possibility of a race condiiton
+between making the two method calls from multiple threads.
+
