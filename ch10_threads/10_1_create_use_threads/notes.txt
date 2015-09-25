@@ -1,0 +1,23 @@
+When objects are shared among threads it can cause thread interference and threads could read objects in inconsistent states. I.e
+thread A might update a value belonging to an object being read by thread B so thread B might not see this update and does not
+have the latest value.
+It is possible to protect shared objects by synchronizing access to those objects but this can lead to other issues such as 
+starvation.
+There are no guarantees over when exactly a thread starts, pauses or resumes, these are all determined by the scheduling algorithm
+of the underlying operating system.
+
+The Thread class and Runnable interface are used to define our own threads and to start them.
+
+To create a multilthreaded object using the thread class it must extend the Thread class and override its run() method. We then
+call the start() method on this thread to begin its execution and the code in the run() method is then executed.
+Overriding the start() method of the Thread class without calling the start() method of the superclass does not allocate resources
+to thread creation and does not start the thread. If the thread is not started the code in the run() method will not be executed.
+
+To create a multilthreaded object using the Runnable interface it must implement the Runnable interface and provide an implementation
+of the run() method.
+In order to execute our Runnable objects we need to pass an instance of the Runnable class to the constructor of a Thread object 
+and call its start() method.
+
+Threads are created with a priority that can be set with a value from 1 to 10 with 10 being the highest priority. The priority
+of a thread can be set using the setPriority() method. Schedulers can decide to execute with higher priorities before threads with
+lower priorities but this cannot be guaranteed.
