@@ -1,0 +1,2 @@
+A thread has a number of states and instantiation of a thread does not begin its execution. Methods can be called on a thread
+to change it from one state to another. Some methods can only be called on a thread when it is in a particular state. 
