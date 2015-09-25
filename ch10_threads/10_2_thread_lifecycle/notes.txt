@@ -1,2 +1,27 @@
 A thread has a number of states and instantiation of a thread does not begin its execution. Methods can be called on a thread
 to change it from one state to another. Some methods can only be called on a thread when it is in a particular state. 
+
+The different states of a thread are:
+- NEW
+- READY
+- RUNNING
+- WAITING
+- TIMED_WAITING
+- BLOCKED
+- TERMINATED
+
+The different state changes and the method calls that achieve them are below:
+
+NEW -> READY: start() method is called and the thread is ready for execution 
+READY -> RUNNING: Chosen by the thread scheduler for execution
+RUNNING -> READY: Suspended by thread scheduler or yield() method called
+RUNNING -> TERMINATED: Thread execution completes
+RUNNING -> WAITING: 
+RUNNING -> TIMED_WAITING
+RUNNING -> BLOCKED
+WAITING -> READY
+WAITING -> TERMINATED
+TIMED_WAITING -> READY
+TIMED_WAITING -> TERMINATED
+BLOCKED -> READY
+BLOCKED -> TERMINATED
