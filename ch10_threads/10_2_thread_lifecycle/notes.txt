@@ -2,13 +2,13 @@ A thread has a number of states and instantiation of a thread does not begin its
 to change it from one state to another. Some methods can only be called on a thread when it is in a particular state. 
 
 The different states of a thread are:
-- NEW
-- READY
-- RUNNING
-- WAITING
-- TIMED_WAITING
-- BLOCKED
-- TERMINATED
+- NEW: A thread has been instantiated but has not yet started
+- READY: 
+- RUNNING: 
+- WAITING: A thread waiting indefinitely for another thread to perform a particular action
+- TIMED_WAITING: A thread waiting for a period of time for another thread to perform a particular action
+- BLOCKED: A thread that's blocked waiting for a monitor lock
+- TERMINATED: A thread who has completed execution of its run() method
 
 The different state changes and the method calls that achieve them are below:
 
@@ -16,12 +16,66 @@ NEW -> READY: start() method is called and the thread is ready for execution
 READY -> RUNNING: Chosen by the thread scheduler for execution
 RUNNING -> READY: Suspended by thread scheduler or yield() method called
 RUNNING -> TERMINATED: Thread execution completes
-RUNNING -> WAITING: 
-RUNNING -> TIMED_WAITING
-RUNNING -> BLOCKED
-WAITING -> READY
-WAITING -> TERMINATED
-TIMED_WAITING -> READY
-TIMED_WAITING -> TERMINATED
-BLOCKED -> READY
-BLOCKED -> TERMINATED
+RUNNING -> WAITING: Call made to either the wait() or join() method
+RUNNING -> TIMED_WAITING: Call made to sleep(int), wait(int) or join(int) method
+RUNNING -> BLOCKED: Thread is waiting to acqure a monitor lock
+WAITING -> READY: Call made to notify() or notifyAll()
+WAITING -> TERMINATED: Exception occurs
+TIMED_WAITING -> READY: Time to wait for has elapsed
+TIMED_WAITING -> TERMINATED: Exception occurs
+BLOCKED -> READY: Thread acquires monitor lock
+BLOCKED -> TERMINATED: Exception occurs
+
+The Thread class has a number of instance methods and static methods that can be used to change or query the state of a thread.
+
+Instance methods that change the state of a thread:
+- join()
+- join(long)
+- join(long, int)
+- start()
+
+Instance methods that query the state of a thread:
+- getId()
+- getName()
+- getPriority()
+- isAlive()
+
+Static method thats change the state of a thread:
+- yield()
+- sleep(long)
+- sleep(long, int)
+
+Static methods that query the state of a thread:
+- currentThread()
+- interrupted()
+
+In order to start thread execution and transition a thread from the NEW state to the RUNNABLE state we make a call to the start() method on an instantiated
+Thread object. This tells the scheduler that the thread is ready to be executed and the scheduler will execute the thread
+task based on its scheduling algorithm. The start() method can only be called on a thread that is in the NEW state so the first 
+call to the start() method moves the state to RUNNABLE and any subsequent calls to start() made after this will throw an 
+IllegalThreadStateException as the thread is no longer in the NEW state.
+
+Calling the run method of a Thread executes the code of the run method in the current thread. It does not create a new thread 
+of execution and then execute the code within that thread. 
+
+Pausing thread execution happens on explicit calling of a particular method or when the thread has executed for the maximum 
+allowed time slice determined by the thread scheduler.
+
+The amount of time a processor spends executing tasks is sliced up into time slices to allow multiple threads to execute within
+those time slices before being swapped out for another thread. When the scheduler selects a thread to execute it the state of the
+thread changes from READY to RUNNING. When the thread is swapped out its state changes back to READY.
+
+The static method yield() in the Thread class tells the scheduler that you would like the thread that is currently executing to
+pause execution and cease its use of the processor. This is only a hint to the scheduler however as the scheduler can ignore
+this call.
+Another method call that can be used to pause thread execution is the sleep(long) method. This methods is guaranteed to pause
+the thread that is currently executing for the number of milliseconds specified in the long argument to the method call.
+One thing to note however is that the thread that has been paused is not guaranteed to resume execution after the number of 
+milliseconds to pause has elapsed. The resumption of the thread execution is determined by the thread scheduler.
+
+In the event that a thread is waiting for another thread to complete its tasks before it can proceed then it is possible that 
+the thread will pause its own execution until after the thread it is waiting on has completed. This is done using the join()
+method.
+
+A thread completes execution at the end of the run method. On completion of this method there is no more processing to be carried 
+out by the thread so the state of the thread is changed to TERMINATED.
