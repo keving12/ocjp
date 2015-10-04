@@ -1,0 +1,42 @@
+To speed up processing tasks can be executed concurrently. This can be problematic if there is data shared between the numerous
+threads as it can result in incorrect data. For this reason it is necessary to protect data shared between threads.
+Strategies for protecting data include making it accessible to a single thread at a time, immmutable classes and defining volatile
+variables.
+
+It should not be assumed that a single java statement is atomic. It is entirely possible that there are multiple steps to a seemingly
+atomic statement that could be interleaved by multiple threads and result in incorrect values.
+A prime example of this is the arithmetic operator ++. This looks like an atomic operation that increments a value but in reality
+this will load a variables value, increment it and then write it back. 
+
+Thread safety is the practice of ensuring that data maintains consistency when being modified by multiple threads. Java locks shared
+objects when being accessed by a thread in order to ensure thread safety.
+All java objects have an object monitor which can be locked or unlocked by a single thread at a time. The thread that holds a lock
+on an object is the monitor owner.
+
+Adding the synchronized keyword to a method means a thread must acquire the monitor lock of an object before it can begin execution.
+Once a thread has acquired this lock all other threads must wait for the lock to be released.
+A thread can release a lock when it has completed its execution or if it must wait for another operation to complete.
+In the event that a thread must wait for completion of an operation it enters a waiting set of threads that are due to acquire 
+the lock again. This is typically when a thread has been requested to yield or wait. The waiting threads can then reacquire 
+the lock when a call is made to notify() or notifyAll().
+
+Methods that modify the state of instance or static variables should be defined a synchronized methods. This ensures that only 
+one thread at a time can modify the state of these variables and prevents variables resulting in incorrect values.
+If a thread invokes a synchronized instance method it will acquire a lock on the monitor of the instance on which the method
+is invoked. If the thread invokes a synchronized static method it will acquire a lock on the class.
+
+It may be inefficent to make use of synchronized methods in the event that you have a number of synchronized methods that process
+different data sets. The reason for this is because a lock would be acquired on an instance of your class when calling a method
+that processed data set A but a thread waiting to invoke a method that performed some processing on data set B would be blocked 
+from doing so. This is unnecessary as the point of synchronized methods is to prevent inconsistent data coming from multiple accesses
+but if the multiple accesses occur to different data sets there is no need to synchronize.
+The solution to this is to use synchronized statements. 
+
+Immutable objects are thread safe because their state cannot be changed so there are no issues when being access by multiple
+threads concurrently. String and all of the wrapper classes are immutable so are thread safe.
+
+Declaring variables using the keyword volatile is another way of protecting data within variables from concurrent modification.
+Accesses to variables declared as volatile are are read from main memory by threads and cannot be copied to a thread local cache.
+
+Use of the volatile keyword can be useful when initialising variables as it prevents a thread accessing a variable before it
+is completely initialised.

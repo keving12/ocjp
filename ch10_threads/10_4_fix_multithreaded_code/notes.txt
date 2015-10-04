@@ -1,0 +1,24 @@
+Data that is shared between threads is any data that exists on the heap, that is class and instance variables. Data that is 
+exclusive to each thread is anything on the stack, that is local variables and method parameters.
+
+Because it is the static and instance variables that are shared between threads it is important to protect these when they're being
+accessed concurrently.
+
+It is important to protect both read and write operations on shared objects. This is because thread A could read a value modify it 
+and write it back but just before the write back occurs thread B could read the value which has now been updated but not yet written back.
+This is a dirty read and thread B will have inconsistent data.
+
+Deadlock is where a thread holds a lock on a resource A and needs access to another resource B and another thread holds a lock on 
+resource B but needs access to resource A in order to complete. As both threads are waiting for resources that are locked by 
+the other both threads will deadlock as neither of them can progress with task execution.
+
+Starvation occurs when a thread is not selected by the thread scheduler to complete its task. This can be because the task is of
+low priority and there is a steady stream of higher priority tasks keeping the processor busy. It can also occur when a task is long 
+running and is invoked frequently again keeping the processor busy.
+
+Livelock occurs when two threads are not blocked but are busy trying to communicate with each other that they do not actually
+progress their task.
+
+Java makes use of a happens-before relationship when working with threads. Examples of this include:
+- Unlocking of an object monitor happens before another thread can acquire a lock on that monitor
+- All actions of a thread happen before any other thread returns from a join on that thread
