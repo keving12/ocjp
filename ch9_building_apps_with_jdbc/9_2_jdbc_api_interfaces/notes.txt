@@ -1,0 +1,27 @@
+Every JDBC driver must implement a minimum set of interfaces to conform to JDBC specifications. This minimum set is:
+
+- java.sql.Driver
+- java.sql.Connection
+- java.sql.Statement
+- java.sql.ResultSet
+
+The java.sql.Driver interface must be implement to provide the ability to register driver information. The implementing class is 
+loaded into memory and an instance of it is created and registered with the DriverManager class.
+Upon a request to establish a connection to the database by a java application it will query the DriverManager class for a driver
+from the list of registered drivers to find an appropriate driver to connect to the database.
+
+Classes can be loaded and registered using Class.forName() with a string argument representing the fully qualified name of the class
+that implements the java.sql.Driver interface.
+Another way of registering classes is to provide a java.sql.Driver configuration file in META-INF/services folder of the java application.
+
+The java.sql.Connection interface represents an open session to a database. Connection is used to create SQL statements using
+classes Statement, PreparedStatement and CallableStatement. Connection objects can also be used to work with transactions by committing
+or rolling back transactions and getting metadata of the database such as the data stored in the database.
+
+Interface java.sql.Statement represents behaviour used to create and execute SQL statements and retrieving their results. SQL statements
+can be used to perform CRUD operations on the data in a database. Results from these queries can return either an integer representing
+the number of rows affected by the statement or a ResultSet object.
+
+ResultSet objects are retrieved after executing a SQL select statement against a database representing a table of data. ResultSet
+objects can be read only meaning they can be traversed in one direction, scrollable meaning they can be travered forward and backwards
+or updatable.

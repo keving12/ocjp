@@ -1,0 +1,12 @@
+Transactions provide a mechanism to ensure that all JDBC operations in a group execute successfully before writing those 
+changes to disk. In the event that any single operation should fail then none of the previous or subsequent operations will be 
+persisted. 
+
+By default the Connection class has the value autoCommit set to true. We can change this to false by calling the setAutoCommit 
+method. When autoCommit is set to false we are required to explicitly call commit on the Connection object at the end of 
+successful database update operations. 
+
+It is possible to set save points when executing a number of SQL update operations. This allows for rolling back to the last 
+set of successful updates where a save point was created rather than losing the entire set of attempted update operations. 
+The commit mode of a connection cannot be set during execution of a transaction. If this is attempted an exception is thrown 
+when trying to call commit() or rollback() on that connection. 

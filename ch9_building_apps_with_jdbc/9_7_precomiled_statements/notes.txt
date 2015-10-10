@@ -1,0 +1,14 @@
+Precompiled statements are beneficial over non compiled statements as they are more performant and prevent the possibility of 
+SQL injection attacks. SQL injection is prevented by the use of placeholders that accept parameters for update values or 
+where conditions. This removes the possibility of injecting SQL commands into strings used in statement objects. 
+
+PreparedStatement is one instance of a precompiled statement. The first difference between this and a Statement object is 
+that the SQL command to be used must be passed to the creation of a PreparedStatement. 
+An example of a query using placeholders with a PreparedStatement is as follows:
+
+PreparedStatement statement = connection.prepareStatement("UPDATE myTable SET name = ? WHERE id = ?"); 
+
+We can then set the values of these placeholders using indexes that reference their position in the string as follows:
+
+statement.setString(1, "Kevin"); 
+statement.setInt(2, 17);

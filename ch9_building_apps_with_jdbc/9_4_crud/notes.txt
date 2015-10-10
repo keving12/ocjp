@@ -1,0 +1,16 @@
+The first step to creating a table using JDBC is to request a connection from the DriverManager, we then use the returned 
+Connection object to call createStatement(). Using the statement objected can make a call to createUpdate() passing in a string 
+argument with the SQL update statement. Calling executeQuery when trying to perform an update will return a SQLException. 
+
+After completion of an execution of executeUpdate then database resources must be closed. Statement must be closed first and 
+then the Connection object. Alternatively these can be defined ina try-with-resources block and they will be auto closed. 
+
+In order to query a database a call is made to executeQuery passing in a string argument with the SQL query. This returns a 
+ResultSet object which is effectively a table representing the results of the query. There are a number of get methods on a 
+ResultSet object such as getString and getInt(). These return the value of a column as a String or Integer respectively. 
+All of the get methods require information on the column they need to retrieve. This can be done by passing a String argument 
+with the name of the column to retrieve or by passing an int value representing the index of the column. These integers are not 
+zero-based like most others in java, they start at 1. 
+
+In the event that the query being executed does not return any results then the ResultSet object is not null but simply has no 
+rows in it. 

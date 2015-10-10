@@ -1,0 +1,20 @@
+In order to gain access to a database using jdbc a class must communicate with the DriverManager class to get an instance of 
+the Connection class and this Connection object can be used for all subsequent communication with the database.
+The DriverManager is only required once and once a connection is obtained is no longer required as the application will use the 
+implementations provided by the specified jdbc driver to perform queries and other operations on the database. 
+
+There are two ways in which drivers can be registered with the driver manager. For jdbc version 3 classes have to be manually 
+registered using Class.forName() but jdbc version 4 provides an ability to register them automatically using a file 
+specifying the class to use in a META-INF/services folder of a jar.
+
+Calling Class.forName() loads a class into memory which executes its static initializer block. Within the static initialiser
+is the code to register itself with the DriverManger.
+
+Once a driver class is registered it can be used to obtain a database connection by calling the getConnection() method on the
+DriverManager.
+Calling getConnection() when using jdbc 3 requires a call to Class.forName() with a string argument providing the fully 
+qualified name of the driver to use. This is how used to manually register the driver with the driver manager. This is not
+required when using jdbc 4.
+
+In the event that it is not possible to find a driver or is unable to connect to the database due to invalid credentials 
+then a SQLException is thrown. 

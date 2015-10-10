@@ -1,0 +1,15 @@
+RowSets are used when it is necessary to have an up to date picture of the data in a database. RowSets can be connected or 
+disconnected.  A connected RowSet maintains a connection to the database throughout its life. A disconnected one will 
+connect to the database get results and then disconnect. These results are then cached by the RowSet. Values of a disconnected 
+RowSet can still be updated and these will be reflected in the database if the RowSet should reconnect at a later time. 
+A RowSetFactory is used to define the implementation of a factory for constructing different types of RowSet. 
+A RowSetProvider is used to provide factory methods for obtaining a RowSetFactory implementation. An example of how these are 
+used together is:
+
+RowSetFactory factory = RowSetProvider.newInstance(); 
+RowSet jdbcRowSet = factory.createJdbcRowSet();
+
+RowSet objects are able to create their own connection to the database along with PreparedStatement and ResultSet objects. 
+There is no need to create separate instances of any of these objects. To set the SQL statement to be executed by a RowSet we 
+make a call to the setCommand() method passing in the SQL string to be executed. The next step is to call the execute() method 
+on the RowSet and this will execute the SQL command against the database it is connected to.  

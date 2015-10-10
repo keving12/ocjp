@@ -1,0 +1,4 @@
+The JDBC api provides a number of classes and interfaces that allow user defined classes to connect to a SQL data source, execute
+SQL statements and process results returned.
+
+JDBC drivers have two sets on interfaces, one for application developers and a lower level API for writing drivers.
