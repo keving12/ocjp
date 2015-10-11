@@ -12,3 +12,34 @@ We can then set the values of these placeholders using indexes that reference th
 
 statement.setString(1, "Kevin"); 
 statement.setInt(2, 17);
+
+There are three sql statement execution methods in the PreparedStatement class; execute(), exeucteQuery() and executeUpdate().
+execute() can be used to execute any type of sql statment and returns true if the statement executed successfully, false otherwise.
+executeUpdate() executes a sql statement to create, update or delete database entities. 0 is returned from this method when the
+statement being executed is a create otherwise an integer representing the number of records affected by the exeuction 
+of the statement is returned.
+executeQuery() executes a sql statement and returns a ResultSet object containing rows that meet the query criteria returned.
+
+CallableStatement is another example of a precompiled statement, these are used to call stored procedures. In the same way that 
+the statement to execute must be passed to the creation of a CallableStatement. Creation of a CallableStatement occurs by
+calling the prepareCall() method on the Connection. The syntax is as follows:
+
+CallableStatement statement = connection.prepareCall("{call <stored_procedure_name>()}");
+
+The brackets after the name of the stored procedure are not required if there are no arguments being passed to the stored procedure.
+
+The syntax for calling stored procedures that take arguments is as follows:
+
+CallableStatement statement = connection.prepareCall("{call <stored_procedure_name>(?, ?)}");
+
+The statement above calls a stored procedure with two arguments, the first of these in an input argument and the second of these
+is an output argument. The code to pass an input argument into the call and assign the output value to a variable is as follows:
+
+statement.setString(1, "Kevin");
+int outputValue = 0;
+statement.registerOutParameter(2, Types.NUMERIC);
+statement.setInt(2, outputValue);
+
+The above block passes the value "Kevin" as the first parameter to the stored procedure and registers a variable to use to assign
+the output of the stored procedure to. The output of the stored procedure will then store the result of executing the stored procedure
+to outputValue.
