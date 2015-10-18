@@ -1,0 +1,9 @@
+When overriding a method that throws a checked exception the overriding method must obey the following rules:
+- the overriding method can declare to throw no checked exceptions
+- the overriding method can declare to throw an equivalent exception
+- the overriding method can declare to throw an exception that is a subclass of the exception thrown by the overridden method
+- the overriding method cannot declare to throw an exception that is a superclass of the exception being thrown by the 
+overridden method. 
+
+If the overridden method declares no thrown exceptions then an overriding method cannot declare to throw any checked exception. 
+The overriding method  can however throw a RuntimeException.  

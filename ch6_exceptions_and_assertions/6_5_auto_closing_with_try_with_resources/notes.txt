@@ -1,0 +1,26 @@
+Before java 7 resources that had been opened had to be closed in a finally block with null checks performed on those resources 
+to prevent NPEs. As of java 7 it is now possible to declare a try with resources block to auto close resources removing the 
+need for a finally block with NP checks. 
+For resources to be auto closed they must implement to AutoCloseable interface and be defined within the try block. They are 
+then closed at the end of the try block with their close() method being called. The syntax of a try with resources block is as 
+follows:
+
+try(BufferedInputStream bis = new BufferedInputStream) {} 
+catch(IOException e) {}
+
+Because the close() method throws an IOException this must be declared to be caught or thrown. Although the call to close() is 
+not explicit it is still invoked at the end of the try block. 
+In the event that an exception is thrown from both the try block and the invocation of the close() method then the latter is 
+suppressed by the exception thrown from within the try block. 
+The exception thrown by an invocation of close() is still accessible and can be retrieved with a call to getSuppressed() on the 
+exception variable. 
+Resources are always closed before control is passed to an exception handler when an exception is thrown. Multiple resources 
+declared in a try with resources block must be separated using a semicolon but this is optional on the declaration of the last 
+resource. 
+Variables declared in a try with resources block are implicitly final so it is not valid to declare uninitialised variables 
+within them. It is valid to initialise them as null provided they aren't being set within the try block. 
+
+The scope of any resources declared within a try with resources block is limited to that try block. 
+There are slight differences in the signatures of Closeable's close() signature and that of AutoCloseable. Closeable's close 
+method throws an IOException whereas AutoCloseable's throws Exception. Resources declared in a try with resources block are 
+closed in the reverse order to the order in which they are declared. 

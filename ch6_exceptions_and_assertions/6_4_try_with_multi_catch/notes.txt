@@ -1,0 +1,15 @@
+With java 7 it is now possible to catch multiple exceptions within the same catch block. This is a change from the previous 
+behaviour where a catch block had to be declared for each of the exceptions thrown. A multi catch block is the same as a single 
+catch block except all of the exceptions to be caught are separated by a pipe ( | ). Finally blocks can follow multi catch 
+blocks in the same way as prior to java 7. 
+
+None of the exceptions declared in a multi catch block can share an inheritance relationship. For example an IOException and a 
+FileNotFoundException cannot be declared to be caught in the same catch block. It is possible to mix single catch and multi 
+catch blocks. This is useful when there is an exception that you might want to handle differently from some other exceptions. 
+
+Although there are multiple exception classes defined in a multi catch block there is only one variable, any multi catch block 
+that has more than one variable is incorrect and will fail compilation. 
+The exception variable in a catch block is implicitly final so any attempt to reassign a value to it will cause a compilation 
+failure. 
+The type of the exception variable in a catch block is a common super class between all of the exceptions declared in the catch 
+block. This means that only methods declared in that common superclass can be called on the exception variable. 

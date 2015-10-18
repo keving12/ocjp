@@ -1,0 +1,19 @@
+The throws clause is used to signal that a method can throw any of the exceptions in defined in the method signature. 
+The throwing of the actual exception is carried out by the throw statement. Runtime exceptions or errors are not required 
+to be defined as being thrown in the method signature. 
+
+When using a method that throws a checked exception there are a number of options on how to handle it.
+- handle the exception with a try and catch block
+- declare it as being thrown in the method signature
+- a combination of the two above
+
+A method can throw a subclass of the exceptions declared in a method signature but not any of its super classes. An overriding 
+method can throw any runtime exception or error regardless of whether it's thrown by the overridden method. Compilation does 
+not fail when a method declares an exception to be thrown but does not throw it. 
+
+In java 7 it is possible to throw a more generic exception than those declared with the method signature. This is because java 
+is able to determine that the actual type of exception in a catch block matches those in the method signature so it will 
+compile successfully. 
+
+A try block cannot define a catch block for checked exceptions that are not thrown within the try block. It can however define 
+a catch block for unchecked exceptions that are not thrown in the try block. 

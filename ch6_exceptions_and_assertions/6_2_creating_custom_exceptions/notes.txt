@@ -1,0 +1,6 @@
+Creating custom checked exceptions can be done by implementing a class that extends Exception. It is I'll advised to write 
+custom exceptions that extend throwable. This is because if the exception is caught as a Throwable then it could lead to other 
+errors being caught such as OutOfMemoryError which could lead to unexpected behaviour. 
+
+To create a custom unchecked exception we can define a class that extends RuntimeException. This can be thrown in the same way 
+as any checked exception except now it is not required to be declared in any throws clause or handled in a try-catch. 

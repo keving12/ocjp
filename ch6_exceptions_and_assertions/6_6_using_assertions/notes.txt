@@ -1,0 +1,38 @@
+Assertions allow a programmer to test assumptions about the execution of a piece of code. They allow a programmer to define 
+behaviour that should be true for a piece of code by using a Boolean expression and in the event that the expression is not met 
+then execution is stopped with an AssertionError. Assertions are disabled by default and they should only be used for development 
+and testing purposes and because they impact performance when enabled. 
+
+There are two forms of assertion, a short and a long form. The short form is simply the keyword assert followed by the boolean 
+expression to be evaluated. The long form is the short form followed by a colon and a message to be added to the AssertionError.
+The longer form allows the programmer to provide more information about why the AssertionError occurred. 
+
+When using the longer form of assertion the first expression before the colon must evaluate to a boolean result and the 
+expression following the colon must evaluate to a primitive or an object. An evaluation that has a return type of void will 
+cause a compilation failure.If we pass an object of type Throwable as the second expression then that is considered as the 
+cause for the AssertionError.  
+Class invariants are methods that check the state of an object. For example a method that checks that a list is sorted in a 
+particular order is a class invariant. These class invariants can be used in assert statements in methods that might rely on the 
+assumption that a list is sorted before they perform any operation on it. 
+
+Invalid uses of assertions include the following:
+- validating method parameters to a public methodAssertions can be disabled so to validate method parameters here we must use 
+code that is guaranteed to execute. 
+- depending on assertions for correctly functioning codeBecause assertions can be turned off any code written that depends on 
+assertions will fail to work as expected when assertions are disabled. 
+- modifying method parameters or instance variablesBecause assertions can be turned on or off a different result and subsequent 
+flow could be achieved providing an inconsistent view of behaviour. 
+
+Valid uses of assertions are:
+- check method parameters to private methodsPrivate methods are often invoked from public methods and they pass on validated 
+parameters, it is valid to check that the parameters passed have indeed been validated. 
+- use assertions for situations that never occurAssertions can be switched on to ensure that this is the case but can flag up 
+situations where the system has evolved to a point where previously unsupported behaviour is now supported. 
+
+Assertions can be enabled for specific classes or packages, the commands are:
+java -ea <class_name>
+java -enableAssertions <class_name>
+java -ea <package_name>
+java -enableAssertions <package_name>
+
+-da and -disableAssertions disables assertions. 
