@@ -1,0 +1,61 @@
+Reading and writing of byte data is done using byte streams. All byte input streams are derived from the abstract base 
+class java.io.InputStream and all byte output streams are derived from the abstract base class java.io.OutputStream.
+
+java.io.InputStream is extended by all classes of the Java api that need to read byte data from various data sources. The most
+important method of this class is the read() method of which there are a number of overloaded versions of. These can be used
+to read byte data as an int or a number of bytes into an array.
+When an input stream has reached the end of a file it will return a -1 to signal this.
+
+The close() method is another important method as this will close the stream and free up any associated resources.
+
+Because class InputStream is abstract it cannot be instantiated and used to read data, one of its derived classes must be used.
+The derived classes that extend InputStream are:
+- FileInputStream
+- BufferedInputStream
+- DataInputStream
+- ObjectInputStream
+
+Although it is possible to read character data using byte streams it is not advised as there are a number of character stream 
+classes provided for this purpose that will perform better.
+
+java.io.OutputStream is extended by all classes of the java api that need to write byte data to various sources. The mose important
+method of this class is write(). This method also has a number of overloaded versions for writing a single byte or multiple
+bytes from a byte array to an output destination.
+
+close() and flush() are other important methods of the OutputStream class. The flush() method is for writing data straight
+to the output destination without waiting for a buffer to fill and the close() method is used to close the output
+stream and release associated resources.
+
+Because class OutputStream is abstract it cannot be instantiated and used to write data, one of the following derived classes
+must be used:
+- FileOutputStream
+- BufferedOutputStream
+- DataOutputStream
+- ObjectOutputStream
+
+Performing file I/O with byte streams is done using a FileInputStream or a FileOutputStream. The first step to reading and writing
+using these stream is to instantiate them and this can be done by calling the constructor passing either a File instance or a 
+String representing the path of a file. In the event that the file represented by theargument to the contructor then a 
+FileNotFoundException is thrown.
+A FileInputStream or FileOutputStream cannot be instantiated by passing in another InputStream.
+Instantiation of a FileOutputStream is done by invoking a constructor that takes a String representation of a file or a File object.
+There are also overloaded versions of both of these constructors that take a boolean to determine whether or not to append to
+the existing file contents or simply overwrite the file. 
+Similar to the FileInputStream invoking these constructors can throw a FileNotFoundException.
+
+Copying the contents of a file using streams only copies the contents of a file and not the attributes such as permissions.
+
+FileOutputStream defines a write method that accepts an int argument. This can be a problem if writing an int value to an 
+OutputStream as the int data type takes up 4 bytes or 32 bits so the call to write will only write the lowest order 8 bits to
+the output stream.
+
+Reading single bytes of data can be inefficient, buffering data can reduce the amount of time taken to read and write data
+to and from a stream. Buffered data with bytes streams is achieved using classes BufferedInputStream and BufferedOutputStream
+which are instantiated by passing an instance of an InputStream or OutputStream respectively.
+There are also overloaded constructors that accept an int argument to define the size of the buffer.
+
+FileInputStream and FileOutputStream are used to read and write only byte data from and to a file, they do not provide any methods
+to work with primitive or object data types. To write primitive values and Strings to a file and read them from a file classes
+DataOutputStream and DataInputStream must be used.
+Construction of instances of these classes is achieved by passing in an argument of type InputStream for a DataInputStream
+and an instance of OutputStream for a DataOutputStream object.

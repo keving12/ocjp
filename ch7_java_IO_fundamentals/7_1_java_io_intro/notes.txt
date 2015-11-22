@@ -1,0 +1,13 @@
+In java a stream represents a sequence of data. Java stream can be categorised in two categories; a byte stream or a character 
+stream. Byte streams can be used to read and write all kinds of files including zip, image and PDF files. Character stream are 
+used to read text files. 
+Java uses FileOutputStream to write bytes out to a file and FileInputStream to read bytes from a file. 
+FileReader is used for reading from text files and FileWriter is used to write to text files. 
+Invoking read and write operations on byte or character streams can be inefficient as the unit of data being transferred is 
+small. Buffered streams provide a mechanism to overcome this by buffering the data being read. BufferedInputStream buffers data 
+read in from an input stream while BufferedOutputStream buffers data being written to an OutputStream. 
+BufferedWriter and BufferedReader provide similar functionality for FileWriter and FileReader respectively. Other example of 
+input and output streams are DataInputStream and DataOutputStream. These classes have a number of methods for writing primitive 
+values and strings. 
+In order to write objects to and read objects from file java provides ObjectInputStream and ObjectOutputStream classes. Classes 
+being read from or written to file must implement the Serializable interface. 

@@ -1,0 +1,13 @@
+Using regular expressions in Java enables searching strings for strings that match a particular pattern. Rather than restricting 
+searches to require a full match against a particular string we can define attributes of a string that we want to find using a regex.
+Using regexes we can define attributes of a string that we want to match against such as string starting with or ending 
+with particular characters or the number of characters in a string.
+
+Character classes are a set of characters enclosed in square brackets. Java will attempt to match a string against any of the 
+characters in the character set.
+
+The end() method of the Matcher class returns an int to signal the index of the input string where a target string ends. However
+it points to the index of the character that occurs after the last character of the target string. I.e if the target string exists 
+between characters 12 and 20 the end() method returns 21.
+
+Invalid regexes passed to a Pattern object throw PatternSyntaxException.

@@ -1,0 +1,59 @@
+Methods for string formatting exist in the class java.util.Formatter and I/O classes PrintStream and PrintWriter. The Formatter 
+class can be used to format strings and write them to a file, stream or a StringBuilder.
+
+Within the Formatter class is the overloaded method format which takes the format String that defines how to format the outputted
+string and an Object varargs. The Object varargs allows us to specify any type to be printed in the output and any number. 
+This method can also take a Locale object so that the string can be formatted according to a Locale.
+
+The class PrintStream which can be used to print strings to the standard output defines overloaded methods format() and printf().
+Both of these methods have the same arguments as the format() method of the Formmatter class; a format string, object varargs 
+and an optional Locale.
+It should be noted that System.out.println() cannot write formatted strings to the standard output, this is only possible using
+System.out.format() or System.out.printf(). This is because println() defines overloaded methods with only a single argument.
+
+When using methods format() and printf() we must supply a format string that defines how to format text and an object list of arguments
+that define what must be formatted. Within the format string we can define a combination of fixed text and at least one format
+specifier.
+The elements that make up the format specifier are:
+%[argument_index$][flags][width][.precison]conversion_char
+
+Other than the conversion_char which is required all other format specifier elements above are optional. Below is an explanation
+of the purpose of the different format specifier elements.
+
+- argument_index: Integer indicating the position of the argument in the argument list. First argument 1$, second 2$, etc.
+- flags: A set of character that modifiy the format output. The set of valid flags is dependent on the conversion
+- width: A positive integer indicating the minumum number of characters to be written
+- precision: A positive integer used to restrict the number of characters. Can behave differently for different conversions
+- conversion_char: A character indicating how the argument should be formatted. Valid conversions for an argument depend on the 
+arguments data type
+
+The formatting parameter %b is used to print formatted boolean values. If the argument null then a false is printed, if the argument
+is a boolean or its wrapper type then the result is the string returned by String.valueOf(). In the event that the argument is not
+null and is not a boolean or its wrapper then true is printed.
+
+In the event that there are more arguments passed to the format() method than there are conversion chars then the additional
+arguments are simply ignored by the compiler. If however there are more conversion chars than there are arguments passed to the
+format() method than the runtime exception MissingFormatArgumentException is thrown.
+
+When using the width format specifier it will prepend whitespace if the length of the string is less than the width value and the 
+width value specified is positive. If the length is less than the width and the width value specified is negative then the whitespace
+is appended to the end of the string.
+
+The formatting paramater %c is used to print unicode characters. In the event that the argument supplied cannot be converted to 
+a unicode character then the runtime exception IllegalFormatConversionException is thrown. If the unicode value specified as
+argument is not valid then compilation fails. Only literals and variables that are of a type that can be converted to a unicode
+character can be passed to the %c format specifier. So only char, byte, short, int and their wrappers types.
+
+Formatting of float or double numbers is achieved using the %f format specifier. By default floating point numbers are printed 
+with 6 decimal places but this can be changed by setting a value for precision. If there are more We can also specify how to group digits according
+to locale. For example every 3 digits could be seperated by commas as is done in the en gb locale. Integer literals or variables
+cannot be passsed as argument to a format string with the %f format specifier. Any attempt to pass an integer to a %f format
+specifier will cause an IllegalFormatConversionException to be thrown at runtime.
+
+Integer values are formatted using the %d format specifier. Width and seperator flags can be used with this format specifier in
+the same way as other format specifiers. We cannot set the presion using this format specifier and any attempt to will throw an
+IllegalFormatPrecisionException at runtime.
+
+The format specifier %s can be used to format any primitive variable or object reference. When used with primitive variables the
+value will be printed and when used with an object reference the toString() method of that object will be called. Any type of 
+primitive variable or object reference can be passed to the %s format specifier.

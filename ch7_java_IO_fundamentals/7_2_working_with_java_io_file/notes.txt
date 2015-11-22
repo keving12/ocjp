@@ -1,0 +1,15 @@
+Reading from and writing to files using java I/O will involve working with the File class. The File class represents an 
+absolute or relative path to a file or directory. Absolute paths can be resolved without the need for any further information, 
+relative paths require resolution of another path to sermons a files location. Objects of class File can be used to create, 
+delete or modify attributes of a file or directory. 
+
+The File api has two Boolean methods for determining whether a File object represents a file or a directory. isFile() returns 
+true if the File object represents a file, false otherwise. Similarly isDirectory() returns true if the File object represents 
+a directory. 
+To list the files and directories within a directory the list() method returns a string array with the names of files and sub 
+directories. 
+File objects are immutable so the path represented by a File object cannot be changed. 
+To create a new file the File api provides the createNewFile() method, mkdir() to create a new directory and mkdirs() to create 
+all of the parent directories of a file path. A new files will only be created with createNewFile() if a file with the same name does not already 
+exist. It is possible that an invocation of mkdirs() can throw an exception but still have successfully created some of the 
+parent directories.  
