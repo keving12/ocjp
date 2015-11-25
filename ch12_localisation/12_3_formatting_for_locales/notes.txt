@@ -1,0 +1,44 @@
+In order to format or parse numbers, dates and currencies for different locales java provides a number of classes including NumberFormat and DateFormat.
+Classes java.text.NumberFormat and java.text.DecimalFormat are used to format numbers with NumberFormat also being able to format currencies.
+Formatting of dates is achieved using the classes java.util.Date, java.util.Calendar and java.text.DateFormat.
+
+NumberFormat and Dateformat are abstract classes that define static method getInstance() to retrieve a DecimalFormat and SimpleDateFormat object respectively. .
+The format() method of NumberFormat will format according to the default locale or the specified locale if a Locale object is passed as argument to 
+the format method. Calling the parse() method of NumberFormat will take the strting argument and output it without any formatting.
+If the String value passed to the method cannot be parsed as a number a ParseException is thrown at runtime.
+
+To format numbers or currencies according to a default locale then the static methods getInstance() or getCurrencyInstance() on 
+class NumberFormat respectively. In order to format numbers of currencies according to a specific locale then these methods
+must be called with a Locale object provided as an argument.
+
+Formatting and parsing of dates and times can be achieved using the DateFormat class. There are a number of static methods that return
+an instance of a DateFormat. As DateFormat is an abstract class the object returned is actually a SimpleDateFormat. Dates can be
+formatted and parsed by calling the format() and parse() methods on the DateFormat object.
+
+The DateFormat class has a number of overloaded static methods for retrieving a DateFormat object, a list of these are:
+- getInstance()
+- getDateInstance() - This is overloaded with a 1 and 2 arg method, a style value or a style and a locale object. The style 
+represents how the date should be printed.
+- getDateTimeInstance() - This is overloaded with 2 and 3 arg method. Two args to represent style of date and time and 3 args to 
+include a Locale object
+- getTimeInstance() - Overloaded with 1 and 2 arg methods. Style for time and a Locale object.
+
+When providing a style value for date and time to any of these static methods we can use the following values to format dates
+to different lengths:
+
+- DateFormat.FULL - prints the date using the full name of the day and month
+- DateFormat.LONG - prints the date providing a full month name and a numeric value for date
+- DateFormat.MEDIUM - prints the date with a short month name (Apr) and a numeric value for day
+- DateFormat.SHORT - prints only numberic values for day, month and year. 
+
+In the event that the predefined date formats above are not sufficent custom date and time patterns can be defined using a the
+SimpleDateFormat class. An instance of a SimpleDateFormat is constructed by passing a string representation of the pattern
+to use when formating a date. There is also an overloaded constructor for passing a pattern and locale.
+
+It is important to have the correct case of letters when defining the pattern to format a date to. An incorrect case can
+produce a completely incorrect date. For example mm is the case for formatting minutes while MM is used for formatting months
+getting these the wrong way round can result in a year with a month greater than 12.
+
+Providing a date object to the format methods of DateFormat and its subclass SimpleDateFormat is done by calling the static method
+getInstance() of Calendar, setting the time by calling the overloaded set() methods and then calling getTime() on the Calendar
+instance to return a Date object.

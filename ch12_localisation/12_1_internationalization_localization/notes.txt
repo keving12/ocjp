@@ -1,0 +1,49 @@
+Internationalization is designing an application such that it can be adapted for use across multiple locales and localization is 
+adding components that are locale specific and formatting values according to the way they are used in a particualr locale.
+
+The advantages to localization include better user experience and ensuring information is interpretted in the correct manner. When
+data is formatted according to what a user is used to they are more likely to enjoy their use of an application. Data can be 
+misinterpreted when it is not formatted according to what a user is used to. Dates are a prime example of this. If somebody books
+a holiday expecting the date they are shown to be formatted according to a UK locale but the date is formatted to an American locale
+they are going to turn up at the airport on the wrong date.
+
+The class java.util.Locale can be used to capture information about a user's language and region. A locale can be defined using 
+only a language, region or both.
+Method for formatting numbers, dates, etc are not provided by the Locale class, it simply represents information about a users
+locale which can then be used by other classes such as NumberFormat or DateFormat to provided necessary formatting.
+
+Creation of a Locale object can be achieved using one of the following four methods:
+- Constructors of Locale class
+- Locale methods
+- Locale constants (e.g Locale.GB)
+- Locale.Builder class
+
+Class Locale can be constructed using only a String representation of the users language or a String representation of a users language
+and country. In addition a variant can be added to the two-arg constructor. The variant is used to specify a vendor or browser specific
+code. 
+
+It must be noted that when constructing a Locale object language is always the first argument. No exceptions are thrown when
+is incorrect or invalid arguments are passed to the constructor.
+When passing a language to the Locale constructor it must be a lowercase two-letter code. Common values are "en" for English and
+"fr" for France.
+When providing a country value to the Locale constructor the value must be an uppercase two-letter value or 3 digits. Common examples
+of a country code are GB for the United Kingdom and DE for Germany.
+
+The static method getDefault() of the Locale class will get the default locale for the JVM.
+Class Locale defines a number of Locale Constants for country and language for example Locale.UK, Locale.ENGLISH, Locale.ITALY
+and Locale.ITALIAN.
+
+Locale objects can be created using a builder and calling the setLanguage() and setRegion() methods on the builder. First an instance of the
+static class Builder within Locale must be created, the above methods must be called on the builder before then calling build();
+
+Methods of interest in the Locale class are:
+- getAvailableLocales() returns an array of all installed and supported locales
+- getCountry() returns two-letter country code
+- getLanguage() returns two-letter language code
+- getDisplayCountry() returns full country name
+- getDisplayLanguage() returns full language name
+- getDisplayName() return call of toString() on Locale object
+
+Calling these methods on a Locale object with invalid values set for country and language will simply return the values that were provided.
+There are also overloaded variants of these methods that accept a Locale argument and format the output of the method call according to the Locale
+argument specified.

@@ -1,0 +1,28 @@
+Resources that are specific to a locale are represented by the class java.util.ResourceBundle. Within these resource bundles are resources such
+as text labels and location of images or icons. All resource bundles should share a common base name with the distinction being made by specifying 
+region, language or variant.
+
+ListResourceBundle and PropertyResourceBundle are subclasses of the abstract class Resourcebundle. Resources can then be defined in properties files or as two-dimensional
+Object arrays stored within a custom class that extends ListResourceBundle.
+
+To implement resource bundles using PropertyResourceBundle text files must be created with the extension '.properties'. Each of these properties files is a 
+resource bundle and collectively are referred to as a resource bundle family.
+
+To use a ResourceBundle we call the static method getBundle() passing as arguments the name of the message bundle family and the Locale and loads a single
+resource bundle. A default bundle will be loaded in the event that the Locale information supplied does not match a resource bundle. In the event that the 
+Locale information supplied is not an exact match it will try to resolve the closest resource bundle. For example the resource bundle messages_fr.properties
+would be loaded if the locale information was Locale.CANDA_FRENCH.
+
+Defining resource bundles using a class that extends ResourceBundle requires implementing the protected method getContents(). This
+method returns a two-dimensional array with each inner array containing a key and a value. When using this class as a resource bundle
+the package name of the class must also be specified otherwise a MissingResourceException is thrown at runtime.
+
+In the event that a resource bundle cannot be identified for a given locale then the base resource bundle, the one with no language
+or country information associated with it is loaded. The compiler will try to locate a resource bundle in the following order
+ - Using specified locale language, country and variant
+ - As above without the variant
+ - Using specified locale language only
+ - Using default locale language, country and variant
+ - As above without the variant
+ - Using default locale language only
+ - Base resource, no locale information just name of resource bundle
