@@ -77,7 +77,8 @@ public class QueryAndManipulatePaths {
     public static void pathResolve() {
         Path path = Paths.get("here/a/stub");
         System.out.println(path.resolve("with/file.txt"));
-        System.out.println(path.resolve("/this/is/asbolute/path/to/file.txt"));
+        // Because this is an absolute path it will be returned as it, no need for joining with path
+        System.out.println(path.resolve("/this/is/absolute/path/to/file.txt"));
         
         path = Paths.get("/path/to/folder/file1.txt");
         Path siblingPath = path.resolveSibling("file2.txt");
